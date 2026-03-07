@@ -1,21 +1,28 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useMacBookStore } from '../store'
 import clsx from 'clsx';
 import { Canvas } from '@react-three/fiber'
 import { Box } from '@react-three/drei'
 import { OrbitControls } from '@react-three/drei'
 import MacbookModel14 from './models/Macbook-14';
-import StudioLights from './StudioLights';
+import StudioLights from './three/StudioLights';
+import ModelSwitcher from './three/ModelSwitcher';
+import { useMediaQuery } from 'react-responsive';
 
 const ProductViewer = () => {
     const { color, scale, setColor, setScale } = useMacBookStore();
+
+    const isMobile = useMediaQuery({ query: '(max-width: 1024px)' })
+
+    const colorName = color === '#adb5bd' ? 'Silver' : 'Space Black';
+    const sizeName = scale === 0.06 ? '14"' : '16"';
 
     return (
         <section id="product-viewer">
             <h2>Take a closer look</h2>
 
-            <div className='controls'>
-                <p className='info'>MackBookPro {scale} in {color}</p>
+            <div className='controls w-full flex flex-col items-center'>
+                <p className='text-center text-lg md:text-xl font-semibold mb-5'>MackBookPro {sizeName} in {colorName}</p>
 
                 <div className='flex-center gap-5 mt-5'>
                     <div className='color-control'>
@@ -44,13 +51,11 @@ const ProductViewer = () => {
                 </div>
             </div>
 
-            <Canvas id='canvas' camera={{position: [0, 2, 5], fov: 50, near: 0.1, far: 100}}>
-                <StudioLights/>
-                
-
-                <MacbookModel14 scale={0.06} position={[0, 0, 0]}/>
-                 
-                 <OrbitControls enableZoom={false}/>
+            <Canvas id='canvas' className='!w-full !h-[80vh] lg:!h-dvh relative z-40' camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100 }}>
+                <Suspense fallback={null}>
+                    <StudioLights />
+                    <ModelSwitcher scale={scale} isMobile={isMobile} />
+                </Suspense>
             </Canvas>
         </section>
     )

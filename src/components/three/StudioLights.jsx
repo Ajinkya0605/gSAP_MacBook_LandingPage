@@ -42,7 +42,7 @@ const StudioLights = () => {
                     position={[0, 15, 5]}
                 /> 
             </group>
-        </Environment>
+        </Environment> 
     </group>
   )
 }

@@ -10,9 +10,37 @@ Title: macbook pro M3 16 inch 2024
 
 import React from 'react'
 import { useGLTF, useTexture } from '@react-three/drei'
+import * as THREE from 'three';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { useMacBookStore } from '../../store';
 
 export default function MacbookModel14(props) {
   const { nodes, materials } = useGLTF('/models/macbook-14-transformed.glb');
+  const { color } = useMacBookStore();
+
+  useGSAP(() => {
+    const newColor = new THREE.Color(color);
+
+    // Array of materials that make up the MacBook body based on its glb file
+    const bodyMaterials = [
+      'PaletteMaterial001', 'PaletteMaterial002', 'PaletteMaterial003',
+      'lmWQsEjxpsebDlK', 'iyDJFXmHelnMTbD', 'CRQixVLpahJzhJc',
+      'YYwBgwvcyZVOOAA', 'LpqXZqhaGCeSzdu', 'gMtYExgrEUqPfln'
+    ];
+
+    bodyMaterials.forEach((mat) => {
+      if (materials[mat] && materials[mat].color) {
+        gsap.to(materials[mat].color, {
+          r: newColor.r,
+          g: newColor.g,
+          b: newColor.b,
+          duration: 1,
+        });
+      }
+    });
+
+  }, [color]);
 
   const texture = useTexture('/screen.png');
   return (

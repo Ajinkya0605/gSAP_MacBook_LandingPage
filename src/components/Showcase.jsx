@@ -20,7 +20,7 @@ const Showcase = () => {
 
             timeline.to('.mask img', {
                 transform: 'scale(1.1)'
-            }).to('.content', { opacity: 1, y: 0, ease: 'power1.out'},'+=0.5'); 
+            }).to('.content', { opacity: 1, y: 0, ease: 'power1.out' }, '+=0.5');
         }
     }, [isTablet])
 
@@ -79,7 +79,7 @@ const Showcase = () => {
             </section>
 
             {/* Added scrollable space below so the page height doesn't end immediately after the pin! */}
-            <div className="pb-[40vh] lg:pb-[50vh] bg-black"></div>
+            <div className="pb-[10vh] lg:pb-[20vh] bg-black"></div>
         </>
     )
 }

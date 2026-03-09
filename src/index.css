@@ -218,7 +218,7 @@ body {
   }
 
   #performance {
-    @apply w-dvw h-full overflow-hidden mt-40 lg:mt-60 pt-20 lg:pt-20 flex flex-col items-center relative;
+    @apply w-dvw h-full overflow-hidden mt-10 lg:mt-20 pt-20 lg:pt-20 flex flex-col items-center relative;
 
     h2 {
       @apply font-semibold text-3xl lg:text-6xl text-white max-w-2xl text-center;

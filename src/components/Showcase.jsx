@@ -20,14 +20,14 @@ const Showcase = () => {
 
             timeline.to('.mask img', {
                 transform: 'scale(1.1)'
-            }).to('.content', { opacity: 1, y: 0, ease: 'power1.out' }, '+=0.5');
+            }).to('#showcase .content', { opacity: 1, y: 0, ease: 'power1.out' }, '+=0.5');
         }
     }, [isTablet])
 
 
     return (
         <>
-            <section id='showcase'>
+            <section id='showcase' className='pb-24 lg:pb-40'>
                 <div className='media'>
                     <video src="/videos/game.mp4" loop muted autoPlay playsInline />
                     <div className='mask'>
@@ -77,9 +77,6 @@ const Showcase = () => {
                     </div>
                 </div>
             </section>
-
-            {/* Added scrollable space below so the page height doesn't end immediately after the pin! */}
-            <div className="pb-[10vh] lg:pb-[20vh] bg-black"></div>
         </>
     )
 }

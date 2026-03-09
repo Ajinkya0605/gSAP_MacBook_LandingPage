@@ -126,7 +126,7 @@ body {
     }
 
     video {
-      @apply mx-auto lg:translate-y-5 2xl:translate-y-0;
+      @apply mx-auto lg:translate-y-5 2xl:translate-y-0 w-full aspect-[24/7] object-cover;
     }
 
     button {
@@ -178,10 +178,10 @@ body {
     @apply relative;
 
     .media {
-      @apply relative lg:overflow-hidden;
+      @apply relative lg:overflow-hidden aspect-[16/10] w-full;
 
       video {
-        @apply w-full object-cover object-center;
+        @apply w-full h-full object-cover object-center;
       }
 
       .mask {
